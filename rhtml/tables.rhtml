@@ -1,0 +1,82 @@
+<html>
+
+<head>
+<title>Stack Overflow Credibility Cues Analysis</title>
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'></link>
+<style>
+body{font-family: 'Lato', sans-serif;}
+th{font-family: 'Lato', sans-serif; size:12px; font-weight:bold;}
+td{font-family: 'Lato', sans-serif; size:12px;}
+h1{font-family: 'Lato', sans-serif; size:14px;}
+h2{font-family: 'Lato', sans-serif; size:12px;}
+h3{font-family: 'Lato', sans-serif; size:12px;}
+</style>
+</head>
+
+<body>
+<h1>Stack Overflow - Investigating the Influence of Collaborative Filtering and Reputation</h1>
+
+<!--begin.rcode echo=FALSE, results='hide', message=FALSE
+# Preprocessing script.
+library(plyr)
+library(ggplot2)
+library(RMySQL)
+library(xtable)
+library(gplots)
+con <- dbConnect(MySQL(), user="stacktest", password="BUjT4CJrbfSdVNZe", dbname="stacktest", host="localhost")
+query<-"SELECT b.question_id, a.answer_id, a.subject_id, a.rank_presented, a.user_rating, b.rep_shown, b.priorknowledge, c.score, c.userrep, c.length, c.containscode FROM testdata_answer a INNER JOIN testdata_question b ON a.testdata_question_id = b.id INNER JOIN answer c ON a.answer_id = c.id"
+data<-dbGetQuery(con, query)
+
+#labels(data$rep_shown)=
+df.rep <- subset(data, rep_shown==1)
+df.norep <- subset(data, rep_shown==0)
+
+data$rep_shown <- factor(data$rep_shown, labels=c('No','Yes'))
+end.rcode-->
+
+
+<!--begin.rcode  echo=FALSE, results='hide'
+# Correlation between visibility of cues and user's credibility rating
+cor.norep<-cor.test(df.norep$score, df.norep$user_rating)
+#str(cor.norep)
+cor.rep<-cor.test(df.rep$score, df.rep$user_rating)
+tbl <- matrix(c(cor.norep$statistic, cor.rep$statistic,
+                cor.norep$parameter, cor.rep$parameter,
+                cor.norep$p.value, cor.rep$p.value
+                ),ncol=2,byrow=TRUE)
+colnames(tbl) <- c("Cues Not Shown","Cues Shown")
+rownames(tbl) <- c("Coefficient","df","p")
+cred <- as.table(tbl)
+end.rcode-->
+
+<h2>1. Correlation between subject scores and community rating (when hidden or visible)</h2>
+<!--begin.rcode echo=FALSE, comment=NA
+print(xtable(cred, caption="Spearman's correlation"), type="html")
+end.rcode-->
+
+<h2>2. Chart of user rating by the order of the answers presented</h2>
+<!--begin.rcode fig.width=7, fig.height=6, echo=FALSE
+
+means<- ddply(data, c("rank_presented","rep_shown"), summarise, mean_rating = mean(user_rating, na.rm = TRUE))
+p <-ggplot(means, aes(x=rank_presented, y=mean_rating, fill=rep_shown)) + geom_bar(stat="identity",position=position_dodge()) + scale_x_continuous('Order presented') + scale_y_continuous('Mean User Rating') + scale_fill_manual(name="Cues Visible", 
+                     values=c("red", "green"))
+p
+end.rcode-->
+
+<!--begin.rcode fig.width=7, fig.height=6, echo=FALSE
+plotmeans(user_rating~rep_shown, data=data, xlab="Cues Visible", ylab="Mean Rating")
+end.rcode-->
+
+<!--begin.rcode echo=FALSE, comment=NA
+t<-t.test(user_rating~rep_shown, data=data)
+
+tbl <- matrix(c(t$statistic, t$parameter, t$p.value),ncol=1,byrow=TRUE)
+colnames(tbl) <- c(t$method)
+rownames(tbl) <- c("t statistic","df","p")
+ttbl <- as.table(tbl)
+
+print(xtable(ttbl), type="html")
+end.rcode-->
+
+</body>
+</html>
