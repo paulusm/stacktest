@@ -1,14 +1,27 @@
 
-# Correlation between visibility of cues and user's credibility rating
-cor.norep<-cor.test(df.norep$score, df.norep$user_rating)
-str(cor.norep)
-cor.rep<-cor.test(df.rep$score, df.rep$user_rating)
-tbl <- matrix(c(cor.norep$statistic, cor.rep$statistic,
-                cor.norep$parameter, cor.rep$parameter,
-                cor.norep$p.value, cor.rep$p.value
+# Correlation between community score and user's credibility rating
+cor.norep<-cor.test(df.norep$score, df.norep$user_rating, method="spearman")
+#str(cor.norep)
+cor.rep<-cor.test(df.rep$score, df.rep$user_rating, method="spearman")
+#str(cor.rep)
+tbl <- matrix(c(  round(cor.norep$estimate,3), round(cor.rep$estimate,3),
+               round(cor.norep$p.value,5), round(cor.rep$p.value,5)
                 ),ncol=2,byrow=TRUE)
 colnames(tbl) <- c("Cues Not Shown","Cues Shown")
-rownames(tbl) <- c("Correlation","df","p")
+rownames(tbl) <- c("Correlation","p")
+cred <- as.table(tbl)
+cred
+
+# Correlation between answerer's reputation and user's credibility rating
+cor.norep<-cor.test(df.norep$userrep, df.norep$user_rating, method="spearman")
+#str(cor.norep)
+cor.rep<-cor.test(df.rep$userrep, df.rep$user_rating, method="spearman")
+#str(cor.rep)
+tbl <- matrix(c(  round(cor.norep$estimate,3), round(cor.rep$estimate,3),
+                  round(cor.norep$p.value,5), round(cor.rep$p.value,5)
+),ncol=2,byrow=TRUE)
+colnames(tbl) <- c("Cues Not Shown","Cues Shown")
+rownames(tbl) <- c("Correlation","p")
 cred <- as.table(tbl)
 cred
 
