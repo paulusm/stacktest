@@ -1,4 +1,25 @@
 
+
+# What about for the highest rank answers?
+# need to filter here..
+
+
+#Regression models
+#Both signif. but rep shown much more significant!!
+lm.norep<-lm(df.norep$user_rating~log(df.norep$score+10)*log(df.norep$userrep+1))
+summary(lm.norep)
+lm.rep<-lm(df.rep$user_rating~log(df.rep$score+10)*log(df.rep$userrep+1))
+summary(lm.rep)
+#layout(matrix(c(1,2,3,4),2,2)) # optional 4 graphs/page 
+plot(lm.rep)
+
+plot(log(df.rep$score),df.rep$user_rating,)
+abline(lm.rep)
+
+#Non para anova anyone, ditto the case
+kruskal.test(user_rating~score+userrep, df.norep)
+kruskal.test(user_rating~score+userrep, df.rep)
+
 # Correlation between community score and user's credibility rating
 cor.norep<-cor.test(df.norep$score, df.norep$user_rating, method="spearman")
 #str(cor.norep)
@@ -73,3 +94,8 @@ p
 # derive an answer quality score
 data$quality_score = log(data$score+2) + log(data$length) + data$containscode
 data$quality = cut(data$quality_score, breaks = c(5, 7, 10 ,20), labels=c("low", "medium", "high"))
+
+#Are the ratings with cues shown significantly higher?
+wilcox.test(data$user_rating~data$rep_shown)
+t.test(data$user_rating~data$rep_shown)
+# No - but this is not important !

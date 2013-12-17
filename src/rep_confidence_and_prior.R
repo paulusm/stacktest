@@ -4,7 +4,7 @@
 
 data$rep_shown<-as.factor(data$rep_shown)
 
-wilcox.test(user_rating~rep_shown, data=data)
+
 
 wilcox.test(priorknowledge~rep_shown, data=data)
 
