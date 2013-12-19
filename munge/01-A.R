@@ -1,6 +1,9 @@
 # Preprocessing script.
 data$rep_shown <- as.factor(data$rep_shown)
+<<<<<<< HEAD
 #data$coding <- as.factor(data$coding)
+=======
+>>>>>>> 1fff6e2b990869afaa3dfa88e04209186f5a43f7
 
 # derive an answer quality score
 data$quality_score = log(data$score+10) + log(data$length) + data$containscode
@@ -9,9 +12,12 @@ data$quality = cut(data$quality_score, breaks = c(5, 7, 10 ,20), labels=c("low",
 # derive a prior knowledge interval
 data$priork = cut(data$priorknowledge, breaks = c(0,2.5,3.5,6), labels=c("low", "medium", "high"))
 
+<<<<<<< HEAD
 # derive a persuasiveness interval
 data$persuasiveness = cut(data$user_rating, breaks = c(0,2.5,3.5,6), labels=c("low", "medium", "high"))
 
+=======
+>>>>>>> 1fff6e2b990869afaa3dfa88e04209186f5a43f7
 # Disaggregate by presence of cues
 df.rep <- subset(data, rep_shown==1)
 df.norep <- subset(data, rep_shown==0)
