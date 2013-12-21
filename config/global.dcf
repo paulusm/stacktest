@@ -2,7 +2,7 @@ data_loading: on
 cache_loading: off
 munging: on
 logging: off
-load_libraries: off
-libraries: reshape, plyr, ggplot2, stringr, lubridate, gplots, knitr
+load_libraries: on
+libraries: reshape2, plyr, ggplot2, knitr, xtable
 as_factors: on
 data_tables: off

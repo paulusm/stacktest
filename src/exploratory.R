@@ -21,9 +21,9 @@ kruskal.test(user_rating~score+userrep, df.rep)
 
 
 # Nonparametric Correlation between community score and user's credibility rating
-cor.norep<-cor.test(df.norep$score, df.norep$user_rating, method="spearman")
+cor.norep<-cor.test(df.norep$score, df.norep$user_rating, method="kendall")
 #str(cor.norep)
-cor.rep<-cor.test(df.rep$score, df.rep$user_rating, method="spearman")
+cor.rep<-cor.test(df.rep$score, df.rep$user_rating, method="kendall")
 #str(cor.rep)
 tbl <- matrix(c(  round(cor.norep$estimate,3), round(cor.rep$estimate,3),
                round(cor.norep$p.value,5), round(cor.rep$p.value,5)
@@ -107,12 +107,9 @@ limits <- aes(ymax = mean_rating + se_rating, ymin= mean_rating - se_rating)
 dodge <- position_dodge(width=0.9)
 p <-ggplot(kdata, aes(x=priork, y=mean_rating, fill=rep_shown)) + geom_bar(stat="identity",position=dodge)
 p<-p + geom_errorbar(limits, position=dodge, width=0.25)
-<<<<<<< HEAD
 p<-p + scale_y_discrete("Mean Credibility Rating")
 p<-p + scale_x_discrete("Prior Knowledge (self-rating)")
 p<-p + labs(fill = "Cues Visible")
-=======
->>>>>>> 1fff6e2b990869afaa3dfa88e04209186f5a43f7
 p
 
 # scatter

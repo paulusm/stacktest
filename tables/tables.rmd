@@ -1,0 +1,40 @@
+Social QA Credibility Study
+========================================================
+
+``` {r loading, include=FALSE, cache=FALSE}
+require(ProjectTemplate)
+setwd("..")
+load.project()
+```
+
+### Correlations
+Table: Correlation betwen user credibility rating and community score
+``` {r correlation1, echo=FALSE, message=FALSE, results='asis', prompt=FALSE}
+cor1.table <- xtable(cor.score())
+print(cor1.table, type="html")
+```
+
+Table: Correlation between user credibility rating and answerer's reputation
+``` {r correlation2, echo=FALSE, message=FALSE, results='asis', prompt=FALSE}
+cor2.table <- xtable(cor.rep())
+print(cor2.table, type="html")
+```
+
+Figure: Prior knowledge and confidence
+```{r priork, echo=FALSE, fig.width=7, fig.height=6}
+priork.graph()
+```
+
+### Comment classification according to persuasiveness score
+``` {r comments1,echo=FALSE, message=FALSE, results='asis', prompt=FALSE}
+pers.table <- xtable(df.bp.cols)
+print(pers.table, type="html")
+```
+
+### Comment classification according to prior knowledge score
+``` {r comments2,echo=FALSE, message=FALSE, results='asis', prompt=FALSE}
+pk.table <- xtable(df.pk.cols)
+print(pk.table, type="html")
+```
+
+

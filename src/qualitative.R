@@ -4,6 +4,9 @@
 df.bypersuasiveness<- ddply(data, c("persuasiveness","coding"), nrow)
 df.bypersuasiveness<- subset(df.bypersuasiveness, coding != 'vague or uninformative comment!' )
 df.bypersuasiveness<-df.bypersuasiveness[ order(df.bypersuasiveness[,1], -df.bypersuasiveness[,3]), ]
+pers.table <- xtable(df.bypersuasiveness)
+print(pers.table, type="html")
+
 
 # 2) Prior knowledge of topic
 df.bypriork<- ddply(data, c("priork","coding"), nrow)
