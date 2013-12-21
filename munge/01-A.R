@@ -18,8 +18,27 @@ df.norep <- subset(data, rep_shown==0)
 # Disaggregate philosophers
 df.phil.rep <- subset(data, rep_shown==1 & grepl("UWEP",data$name))
 df.phil.norep <- subset(data, rep_shown==0 & grepl("UWEP",data$name))
-df.nonphil.rep <- subset(data, rep_shown==1 & !grepl("UWEP",data$name))
-df.nonphil.norep <- subset(data, rep_shown==0 & !grepl("UWEP",data$name))
+
+# Disaggregate masters
+df.msc.rep <- subset(data, rep_shown==1 & grepl("UWEM",data$name))
+df.msc.norep <- subset(data, rep_shown==0 & grepl("UWEM",data$name))
+
+#remainder
+df.ug.rep <- subset(data, rep_shown==1 & !grepl("UWEP",data$name) & !grepl("UWEM",data$name))
+df.ug.norep <- subset(data, rep_shown==0 & !grepl("UWEP",data$name) & !grepl("UWEM",data$name))
+
+#Participants Summary table
+df.participants<- data.frame(
+  c('Subjects','Questions presented', 'Rated answers (cues visible)','Rated answers (cues not visible)'),
+  c(length(unique(df.ug.rep$subject_id))+length(unique(df.ug.norep$subject_id)),length(unique(df.ug.rep$question_id)), nrow(df.ug.rep),nrow(df.ug.norep)),
+  c(length(unique(df.msc.rep$subject_id))+length(unique(df.msc.norep$subject_id)),length(unique(df.msc.rep$question_id)),nrow(df.msc.rep), nrow(df.msc.norep)),
+  c(length(unique(df.phil.rep$subject_id))+length(unique(df.phil.norep$subject_id)),length(unique(df.phil.rep$question_id)),nrow(df.phil.rep),nrow(df.phil.norep)))
+
+names(df.participants) <- c(
+  'Condition',
+  'Undergraduate Computing and Information Science', 
+  'Postgraduate Information Science',
+  'Undergraduate Philosophy')
 
 #Qualitative data frames for tables
 # 1) By persuasiveness
@@ -47,3 +66,5 @@ df.pk.cols<-data.frame(
   df.bypriork[df.bypriork$priork=="high",][1:20,]$codecount
 )
 names(df.pk.cols)<-c("low", "medium", "high")
+
+

@@ -4,24 +4,40 @@ Social QA Credibility Study
 
 
 
+### Summary of study participants
+<!-- html table generated in R 3.0.2 by xtable 1.7-1 package -->
+<!-- Sat Dec 21 12:53:41 2013 -->
+<TABLE border=1>
+<TR> <TH>  </TH> <TH> Condition </TH> <TH> Undergraduate Computing and Information Science </TH> <TH> Postgraduate Information Science </TH> <TH> Undergraduate Philosophy </TH>  </TR>
+  <TR> <TD align="right"> 1 </TD> <TD> Subjects </TD> <TD align="right">  29 </TD> <TD align="right">  11 </TD> <TD align="right">  13 </TD> </TR>
+  <TR> <TD align="right"> 2 </TD> <TD> Questions presented </TD> <TD align="right">  16 </TD> <TD align="right">   5 </TD> <TD align="right">   5 </TD> </TR>
+  <TR> <TD align="right"> 3 </TD> <TD> Rated answers (cues visible) </TD> <TD align="right"> 294 </TD> <TD align="right">  63 </TD> <TD align="right">  75 </TD> </TR>
+  <TR> <TD align="right"> 4 </TD> <TD> Rated answers (cues not visible) </TD> <TD align="right"> 243 </TD> <TD align="right">  66 </TD> <TD align="right"> 114 </TD> </TR>
+   </TABLE>
+
+
 ### Correlations
 Table: Correlation betwen user credibility rating and community score
 <!-- html table generated in R 3.0.2 by xtable 1.7-1 package -->
-<!-- Fri Dec 20 22:55:52 2013 -->
+<!-- Sat Dec 21 12:53:41 2013 -->
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> Cues Not Shown </TH> <TH> Cues Shown </TH>  </TR>
-  <TR> <TD align="right"> Correlation </TD> <TD align="right"> 0.14 </TD> <TD align="right"> 0.28 </TD> </TR>
-  <TR> <TD align="right"> p </TD> <TD align="right"> 0.00 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> UG Comp/IS </TD> <TD> 0.17 (0.001) </TD> <TD> 0.273 (0.000) </TD> </TR>
+  <TR> <TD align="right"> PG IS </TD> <TD> 0.196 (0.054) </TD> <TD> 0.218 (0.052) </TD> </TR>
+  <TR> <TD align="right"> UG Phil </TD> <TD> 0.132 (0.078) </TD> <TD> 0.294 (0.002) </TD> </TR>
+  <TR> <TD align="right"> Overall </TD> <TD> 0.137 (0.000) </TD> <TD> 0.284 (0.000) </TD> </TR>
    </TABLE>
 
 
 Table: Correlation between user credibility rating and answerer's reputation
 <!-- html table generated in R 3.0.2 by xtable 1.7-1 package -->
-<!-- Fri Dec 20 22:55:52 2013 -->
+<!-- Sat Dec 21 12:53:41 2013 -->
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> Cues Not Shown </TH> <TH> Cues Shown </TH>  </TR>
-  <TR> <TD align="right"> Correlation </TD> <TD align="right"> 0.06 </TD> <TD align="right"> 0.17 </TD> </TR>
-  <TR> <TD align="right"> p </TD> <TD align="right"> 0.11 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> UG Comp/IS </TD> <TD> 0.125 (0.010) </TD> <TD> 0.152 (0.000) </TD> </TR>
+  <TR> <TD align="right"> PG IS </TD> <TD> -0.051 (0.599) </TD> <TD> 0.264 (0.015) </TD> </TR>
+  <TR> <TD align="right"> UG Phil </TD> <TD> 0.176 (0.016) </TD> <TD> 0.303 (0.001) </TD> </TR>
+  <TR> <TD align="right"> Overall </TD> <TD> 0.058 (0.112) </TD> <TD> 0.172 (0.000) </TD> </TR>
    </TABLE>
 
 
@@ -31,7 +47,7 @@ Figure: Prior knowledge and confidence
 
 ### Comment classification according to persuasiveness score
 <!-- html table generated in R 3.0.2 by xtable 1.7-1 package -->
-<!-- Fri Dec 20 22:55:53 2013 -->
+<!-- Sat Dec 21 12:53:42 2013 -->
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> low </TH> <TH> medium </TH> <TH> high </TH>  </TR>
   <TR> <TD align="right"> 1 </TD> <TD> argument against answer (52) </TD> <TD> argument against answer (16) </TD> <TD> argument for answer (53) </TD> </TR>
@@ -59,7 +75,7 @@ Figure: Prior knowledge and confidence
 
 ### Comment classification according to prior knowledge score
 <!-- html table generated in R 3.0.2 by xtable 1.7-1 package -->
-<!-- Fri Dec 20 22:55:53 2013 -->
+<!-- Sat Dec 21 12:53:43 2013 -->
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> low </TH> <TH> medium </TH> <TH> high </TH>  </TR>
   <TR> <TD align="right"> 1 </TD> <TD> argument against answer (35) </TD> <TD> argument against answer (23) </TD> <TD> argument for answer (13) </TD> </TR>

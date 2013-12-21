@@ -7,6 +7,12 @@ setwd("..")
 load.project()
 ```
 
+### Summary of study participants
+``` {r participants, echo=FALSE, message=FALSE, results='asis', prompt=FALSE}
+pt.table <- xtable(df.participants)
+print(pt.table, type="html")
+```
+
 ### Correlations
 Table: Correlation betwen user credibility rating and community score
 ``` {r correlation1, echo=FALSE, message=FALSE, results='asis', prompt=FALSE}
