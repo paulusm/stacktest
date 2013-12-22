@@ -9,20 +9,32 @@ load.project()
 
 ### Summary of study participants
 ``` {r participants, echo=FALSE, message=FALSE, results='asis', prompt=FALSE}
-pt.table <- xtable(df.participants)
+pt.table <- xtable(table.participants())
 print(pt.table, type="html")
 ```
 
 ### Correlations
-Table: Correlation betwen user credibility rating and community score
+Table: Correlation betwen user credibility rating and community score, by test group
 ``` {r correlation1, echo=FALSE, message=FALSE, results='asis', prompt=FALSE}
 cor1.table <- xtable(cor.score())
 print(cor1.table, type="html")
 ```
 
-Table: Correlation between user credibility rating and answerer's reputation
+Table: Correlation between user credibility rating and answerer's reputation, by test group
 ``` {r correlation2, echo=FALSE, message=FALSE, results='asis', prompt=FALSE}
 cor2.table <- xtable(cor.rep())
+print(cor2.table, type="html")
+```
+
+Table: Correlation between user credibility rating and answerer's reputation, by prior knowledge
+``` {r correlation3, echo=FALSE, message=FALSE, results='asis', prompt=FALSE}
+cor2.table <- xtable(cor.priork.score())
+print(cor2.table, type="html")
+```
+
+Table: Correlation between user credibility rating and answerer's reputation, by prior knowledge
+``` {r correlation4, echo=FALSE, message=FALSE, results='asis', prompt=FALSE}
+cor2.table <- xtable(cor.priork.rep())
 print(cor2.table, type="html")
 ```
 
@@ -31,16 +43,23 @@ Figure: Prior knowledge and confidence
 priork.graph()
 ```
 
-### Comment classification according to persuasiveness score
+### Comment classification according to persuasiveness score - UG
 ``` {r comments1,echo=FALSE, message=FALSE, results='asis', prompt=FALSE}
-pers.table <- xtable(df.bp.cols)
+pers.table <- xtable(table.coding.persuasiveness(rbind(df.ug.rep, df.ug.norep)))
 print(pers.table, type="html")
 ```
 
-### Comment classification according to prior knowledge score
+### Comment classification according to persuasiveness score - PG
 ``` {r comments2,echo=FALSE, message=FALSE, results='asis', prompt=FALSE}
-pk.table <- xtable(df.pk.cols)
-print(pk.table, type="html")
+pers.table <- xtable(table.coding.persuasiveness(rbind(df.msc.rep, df.msc.norep)))
+print(pers.table, type="html")
 ```
+
+### Comment classification according to persuasiveness score - Phil
+``` {r comments3,echo=FALSE, message=FALSE, results='asis', prompt=FALSE}
+pers.table <- xtable(table.coding.persuasiveness(rbind(df.phil.rep, df.phil.norep)))
+print(pers.table, type="html")
+
+
 
 
